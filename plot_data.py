@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from scipy.ndimage import gaussian_filter1d, maximum_filter1d
 
-data = pd.read_csv('ciwan_1.txt', sep='\t', header=None, names=range(8))
+data = pd.read_csv('ciwan_2.txt', sep='\t', header=None, names=range(8))
 
 acceleration = data[data[1] == 'ACC'][[0,2,3,4]].to_numpy()
 
