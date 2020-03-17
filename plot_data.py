@@ -23,10 +23,6 @@ plt.plot(time, magnitude)
 plt.plot(time, smoothed_magnitude, label='smoothed')
 plt.plot(time, max_magnitude, label='max')
 plt.plot(time, max_smooth_magnitude, label='max smooth')
-# plt.plot(acceleration[:,0]/1000 - start_time, np.abs(acceleration[:,1]), label='x')
-# plt.plot(acceleration[:,0]/1000 - start_time, np.abs(acceleration[:,2]), label='y')
-# plt.plot(acceleration[:,0]/1000 - start_time, np.abs(acceleration[:,3]), label='z')
-# plt.plot(acceleration[:,0]/1000 - start_time, np.sqrt(np.sum(acceleration[:,1:4]**2, 1)), label='l2')
 plt.show()
 
 
