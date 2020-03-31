@@ -6,5 +6,5 @@ Simple activity recognition using smartphone sensor data, in order to discrimina
 
 To run the code run
 ```bash
-python3 plot_data.py
+python3 plot_data.py <file>
 ```
