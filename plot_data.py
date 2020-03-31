@@ -49,7 +49,7 @@ for t, data in zip(time, max_smooth_magnitude):
         new_state = 'sitting'
 
     if new_state != current_state and current_state is not None:
-        if t - start >= time_threshold:
+        if t - start >= time_threshold:  # activity state needs to be active for minimum of 10 s 
             if current_state == 'sitting':
                 ax.axvspan(start, t, alpha=0.5, color='green')
             if current_state == 'walking':
