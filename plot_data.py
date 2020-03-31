@@ -4,33 +4,38 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from scipy.ndimage import gaussian_filter1d, maximum_filter1d
 
+# load data
 data = pd.read_csv('ciwan_2.txt', sep='\t', header=None, names=range(8))
 
+# remain the necessary data
 acceleration = data[data[1] == 'ACC'][[0,2,3,4]].to_numpy()
 
-print(acceleration)
+# print(acceleration)
 
+# Calculate acceleration magnitude and Subtract gravity
 start_time = acceleration[0,0]/1000
 time = acceleration[:,0]/1000 - start_time
 magnitude = np.abs(np.sqrt(np.sum(acceleration[:,1:4]**2, 1)) - 9.81)
 
-# smooth the data
-max_magnitude = maximum_filter1d(magnitude, 100)
+# smooth the data with maximum filter and then gaussian filter
+# max_magnitude = maximum_filter1d(magnitude, 50)
+# smoothed_magnitude = gaussian_filter1d(magnitude, 100)
 max_smooth_magnitude = gaussian_filter1d(maximum_filter1d(magnitude, 50), 100)
-smoothed_magnitude = gaussian_filter1d(magnitude, 100)
+
 
 plt.plot(time, magnitude)
-plt.plot(time, smoothed_magnitude, label='smoothed')
-plt.plot(time, max_magnitude, label='max')
+# plt.plot(time, max_magnitude, label='max')
+# plt.plot(time, smoothed_magnitude, label='smoothed')
 plt.plot(time, max_smooth_magnitude, label='max smooth')
 plt.show()
 
 
-# threshold
+# set threshold
 running_threshold = 20
 walking_threshold = 5
 time_threshold = 10
 
+# discriminate data and visualize the results
 current_state = None
 start = 0
 fig, ax = plt.subplots()
@@ -62,7 +67,6 @@ if current_state == 'walking':
     ax.axvspan(start, t, alpha=0.5, color='yellow')
 if current_state == 'running':
     ax.axvspan(start, t, alpha=0.5, color='red')
-
 
 green_patch = mpatches.Patch(color='green', label='Stand still')
 yellow_patch = mpatches.Patch(color='yellow', label='Walking')
