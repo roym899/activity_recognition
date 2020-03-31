@@ -1,4 +1,4 @@
-# activity_recognition
+# Activity Recognition
 Simple activity recognition using smartphone sensor data
 
 To run the code run
