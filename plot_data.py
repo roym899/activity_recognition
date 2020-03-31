@@ -1,10 +1,17 @@
+import argparse
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from scipy.ndimage import gaussian_filter1d, maximum_filter1d
 
-data = pd.read_csv('ciwan_2.txt', sep='\t', header=None, names=range(8))
+parser = argparse.ArgumentParser(description='Recognize running, walking and standing.')
+parser.add_argument('file', type=str, nargs=1,
+                    help='Data file from Sensorfusion.')
+
+args = parser.parse_args()
+
+data = pd.read_csv(args.file[0], sep='\t', header=None, names=range(8))
 
 acceleration = data[data[1] == 'ACC'][[0,2,3,4]].to_numpy()
 
