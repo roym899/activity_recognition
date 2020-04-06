@@ -13,7 +13,7 @@ args = parser.parse_args()
 data = pd.read_csv(args.file[0], sep='\t', header=None, names=range(8))
 
 # remain the necessary data
-acceleration = data[data[1] == 'ACC'][[0,2,3,4]].to_numpy()
+acceleration = data[data[1] == 'ACC'][[0,2,3,4]].to_numpy(dtype=np.float)
 
 # print(acceleration)
 
